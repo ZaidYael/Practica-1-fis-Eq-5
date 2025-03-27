@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/javafx"
       fx:controller="com.example.fis_practica_1.simulacionController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <!-- Contenedor para los círculos, aqui se tienen cada uno de los circulos que se crean en el controller -->
+    <StackPane fx:id="panePrincipal" prefWidth="800" prefHeight="400"
+               style="-fx-border-color: black; -fx-border-width: 2px;"/>
+
+    <!-- Boton simple para inicializar el algoritmo -->
+    <VBox alignment="CENTER" spacing="20">
+        <HBox alignment="CENTER" spacing="20">
+            <Button text="Iniciar simulacion" alignment="CENTER" fx:id="botonInicio" onAction="#inicioAlgoritmo"/>
+        </HBox>
+
+        <!-- Posible muestreo de tiempo, todavia en pruebas -->
+        <!--<HBox alignment="CENTER" spacing="10">
+            <Label text="Tiempo de recorrido: " fx:id="timeLabel"/>
+            <Label text=": " fx:id="time"/>
+        </HBox> -->
+    </VBox>
+
 </VBox>
