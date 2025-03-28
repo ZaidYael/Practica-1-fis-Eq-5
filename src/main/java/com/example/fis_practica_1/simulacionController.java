@@ -3,15 +3,16 @@ package com.example.fis_practica_1;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 
 public class simulacionController {
 
@@ -31,19 +32,38 @@ public class simulacionController {
 
     // Lista para almacenar las estaciones (círculos)
     public List<Circle> estaciones = new ArrayList<>();
+    public List<Line> rutas = new ArrayList<>();
 
     @FXML
     public void initialize() {
+        Image imagenFondo = new Image(getClass().getResource("/Mapa.jpeg").toExternalForm());
+
+        // Configurar el fondo del StackPane
+        BackgroundImage backgroundImage = new BackgroundImage(
+                imagenFondo,
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.CENTER,
+                new BackgroundSize(100, 100, true, true, true, false)
+        );
         // Estaciones predefinidias de manera inicial (de color rojo) y un valor del 1 al 5, que identifica cada estacion
         // Se puede mover para donde quieras las estaciones (con X y Y)
-        Circle estacion1 = estacionCreada(0, 0, Color.RED,1);
-        Circle estacion2 = estacionCreada(-100, -50, Color.RED,2);
-        Circle estacion3 = estacionCreada(100, -50, Color.RED,3);
-        Circle estacion4 = estacionCreada(-100, 50, Color.RED,4);
-        Circle estacion5 = estacionCreada(100, 50, Color.RED,5);
+        Circle estacion1 = estacionCreada(-350, -100, Color.GREEN,1);
+        Circle estacion2 = estacionCreada(-150, -50, Color.GREEN,2);
+        Circle estacion3 = estacionCreada(0, -50, Color.GREEN,3);
+        Circle estacion4 = estacionCreada(150, 50, Color.GREEN,4);
+        Circle estacion5 = estacionCreada(350, 100, Color.GREEN,5);
+
+        Line ruta1 = ruta1Creada(-250, -75,1);
+        Line ruta2 = ruta2Creada(-75, -50,2);
+        Line ruta3 = ruta3Creada(75, 0,3);
+        Line ruta4 = ruta4Creada(250, 75,4);
 
         // Agregar las estaciones al StackPane (revisar el main.fxml)
         panePrincipal.getChildren().addAll(estacion1, estacion2, estacion3, estacion4, estacion5);
+        panePrincipal.getChildren().addAll(ruta1, ruta2, ruta3, ruta4);
+        panePrincipal.setBackground(new Background(backgroundImage));
+
+
 
         // Agregar las estaciones a la lista para poder manipularlas después
         estaciones.add(estacion1);
@@ -52,6 +72,10 @@ public class simulacionController {
         estaciones.add(estacion4);
         estaciones.add(estacion5);
 
+        rutas.add(ruta1);
+        rutas.add(ruta2);
+        rutas.add(ruta3);
+        rutas.add(ruta4);
     }
 
     // Creacion de una estacion especifica dentro del "Pane Central"
@@ -66,17 +90,62 @@ public class simulacionController {
         return estacion;
     }
 
+
+    public Line ruta1Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(140.00, 140.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+
+        return ruta;
+    }
+
+    public Line ruta2Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(90.00, 1.00, 1.00, 1.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+
+        return ruta;
+    }
+
+    public Line ruta3Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(95.00, 175.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+
+        return ruta;
+    }
+
+    public Line ruta4Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(140.00, 140.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+
+        return ruta;
+    }
+
     // Cambio de estacion color verde
     public void cambiarColorVerde(int noEstacion) {
         if (noEstacion >= 1 && noEstacion <= 5) {
-            estaciones.get(noEstacion - 1).setFill(Color.GREEN);  // Cambiar el color a verde
+            estaciones.get(noEstacion - 1).setFill(Color.RED);  // Cambiar el color a verde
         }
     }
 
     // Cambio de estacion color rojo
     public void cambiarColorRojo(int noEstacion) {
         if (noEstacion >= 1 && noEstacion <= 5) {
-            estaciones.get(noEstacion - 1).setFill(Color.RED);  // Cambiar el color a rojo
+            estaciones.get(noEstacion - 1).setFill(Color.GREEN);  // Cambiar el color a rojo
         }
     }
 
@@ -94,6 +163,9 @@ public class simulacionController {
         totalEstaciones = 5;
         noEstacion = 1;
 
+        botonInicio.setDisable(true);
+
+
         new Thread(() -> {
             while (true) {
                 algoritmoEnEjecucion = true;
@@ -110,6 +182,10 @@ public class simulacionController {
                 }
                 noEstacion += ruta;
             }
+
+            botonInicio.setDisable(false);
+            System.exit(0);
+
         }).start();
     }
 
