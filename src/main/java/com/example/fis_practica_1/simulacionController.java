@@ -1,5 +1,6 @@
 package com.example.fis_practica_1;
 
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -7,6 +8,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +64,7 @@ public class simulacionController {
         panePrincipal.setBackground(new Background(backgroundImage));
 
 
+
         // Agregar las estaciones a la lista para poder manipularlas después
         estaciones.add(estacion1);
         estaciones.add(estacion2);
@@ -86,6 +89,7 @@ public class simulacionController {
         estacion.setTranslateY(y);
         return estacion;
     }
+
 
     public Line ruta1Creada(double x, double y, int noRuta) {
         Line ruta = new Line(140.00, 140.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
@@ -161,6 +165,7 @@ public class simulacionController {
 
         botonInicio.setDisable(true);
 
+
         new Thread(() -> {
             while (true) {
                 algoritmoEnEjecucion = true;
@@ -177,6 +182,7 @@ public class simulacionController {
                 }
                 noEstacion += ruta;
             }
+
             botonInicio.setDisable(false);
             System.exit(0);
 
