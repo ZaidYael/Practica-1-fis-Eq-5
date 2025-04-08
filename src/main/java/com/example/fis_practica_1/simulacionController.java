@@ -189,15 +189,31 @@ public class simulacionController {
         }).start();
     }
 
+    // Algoritmo de inicio
+    public void algoritmoInicio(){
+        int totalAsientos = 40;
+        int asientosDisponibles = totalAsientos; // Estas variables las genere por guia, se pueden eliminar.
+        Thread hiloInicio = new Thread(() -> { // Inicio del nuevo hilo para la espera de 3 segundos
+            try {
+                System.out.println("Iniciando simulacion...");
+                botonInicio.setDisable(true); // Desactiva el boton
+                System.out.println("Asientos disponibles: " + asientosDisponibles); // Esto se imprime por consola
+                Thread.sleep(3000); // 3 Segundos de espera // 3000 milisegundos -> 3 segundos
+                algoritmo(); // Vuelve a llamar al algoritmo
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        hiloInicio.start();
+    }
+
     // Boton, llama al metodo del algoritmo y tambien en caso de que el usuario quiera presionar mas, no se generan mas metros (o hilos)
     @FXML
-    private void inicioAlgoritmo() {
+    private void btnEjecucionSimulacion() {
         if (algoritmoEnEjecucion){
             System.out.println("Simulacion en prueba, por favor espere.");
-            return;
         }
-        algoritmo(); // Con este metodo se inicializa el algoritmo, puede agregarlo a otros botones
-
+        algoritmoInicio(); // Ahora llama al algoritmo de inicio primero
     }
 
     // IMPORTANTE: Hay que prevenir la generacion de hilos, para que el programa no colapse
