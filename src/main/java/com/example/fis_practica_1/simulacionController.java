@@ -198,6 +198,7 @@ public class simulacionController {
                 System.out.println("Iniciando simulacion...");
                 botonInicio.setDisable(true); // Desactiva el boton
                 System.out.println("Asientos disponibles: " + asientosDisponibles); // Esto se imprime por consola
+                generarNumero();
                 Thread.sleep(3000); // 3 Segundos de espera // 3000 milisegundos -> 3 segundos
                 algoritmo(); // Vuelve a llamar al algoritmo
             } catch (InterruptedException e) {
@@ -217,4 +218,21 @@ public class simulacionController {
     }
 
     // IMPORTANTE: Hay que prevenir la generacion de hilos, para que el programa no colapse
+        private static long semilla = System.currentTimeMillis() % 1000;
+
+        public static int generarNumero() {
+            // Parámetros para el generador congruencial
+            long a = 1664525;
+            long c = 1013904223;
+            long m = (long) Math.pow(2, 32);
+
+            // Fórmula: Xn+1 = (a * Xn + c) % m
+            semilla = (a * semilla + c) % m;
+
+            // Escalar el número al rango deseado (1 a 40)
+            int numeroAleatorio = (int) (semilla % 40) + 1;
+            System.out.println(numeroAleatorio);
+            return numeroAleatorio;
+        }
+
 }
