@@ -7,6 +7,9 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/javafx"
       fx:controller="com.example.fis_practica_1.simulacionController">
     <padding>
@@ -20,8 +23,24 @@
     <!-- Boton simple para inicializar el algoritmo -->
     <VBox alignment="CENTER" spacing="20">
         <HBox alignment="CENTER" spacing="20">
-            <Button text="Iniciar simulacion" alignment="CENTER" fx:id="botonInicio" onAction="#inicioAlgoritmo"/>
+            <Button text="Iniciar simulacion" alignment="CENTER" fx:id="botonInicio" onAction="#btnEjecucionSimulacion"/>
         </HBox>
+
+        <!-- Panel de información de asientos con estilo mejorado -->
+        <Pane style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;">
+            <GridPane hgap="10" vgap="5" alignment="CENTER">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER"/>
+                    <ColumnConstraints hgrow="NEVER"/>
+                </columnConstraints>
+
+                <Label text="Asientos Ocupados:" style="-fx-font-weight: bold;"/>
+                <Label fx:id="asientosOcupados" text="0" style="-fx-font-weight: bold; -fx-text-fill: #c62828;" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Asientos Disponibles:" style="-fx-font-weight: bold;" GridPane.rowIndex="1"/>
+                <Label fx:id="asientosDisponibles" text="40" style="-fx-font-weight: bold; -fx-text-fill: #2e7d32;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            </GridPane>
+        </Pane>
 
         <!-- Posible muestreo de tiempo, todavia en pruebas -->
         <!--<HBox alignment="CENTER" spacing="10">
