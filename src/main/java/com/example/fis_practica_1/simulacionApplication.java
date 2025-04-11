@@ -10,7 +10,7 @@ public class simulacionApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(simulacionApplication.class.getResource("main.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 900, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 900, 550);
         stage.setTitle("Cambio de color");
         stage.setScene(scene);
         stage.show();

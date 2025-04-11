@@ -3,6 +3,7 @@ package com.example.fis_practica_1;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -18,11 +19,16 @@ public class simulacionController {
 
     int tiempo,ruta,totalEstaciones,noEstacion;
     boolean algoritmoEnEjecucion;
+    private final int TOTAL_ASIENTOS = 40;
 
     @FXML
     public StackPane panePrincipal;
     @FXML
     public Button botonInicio;
+    @FXML
+    public Label asientosOcupados;
+    @FXML
+    public Label asientosDisponibles;
 
     //Muestreo de tiempo, todavia en pruebas, ignorar/no usar
 //    @FXML
@@ -191,14 +197,22 @@ public class simulacionController {
 
     // Algoritmo de inicio
     public void algoritmoInicio(){
-        int totalAsientos = 40;
-        int asientosDisponibles = totalAsientos; // Estas variables las genere por guia, se pueden eliminar.
         Thread hiloInicio = new Thread(() -> { // Inicio del nuevo hilo para la espera de 3 segundos
             try {
                 System.out.println("Iniciando simulacion...");
                 botonInicio.setDisable(true); // Desactiva el boton
-                System.out.println("Asientos disponibles: " + asientosDisponibles); // Esto se imprime por consola
-                generarNumero();
+
+                int ocupados = generarNumero();
+                int disponibles = TOTAL_ASIENTOS - ocupados;
+
+                // Aquí se actualiza la interfaz con el número de asientos ocupados
+                javafx.application.Platform.runLater(() -> {
+                    asientosOcupados.setText(String.valueOf(ocupados));
+                    asientosDisponibles.setText(String.valueOf(disponibles));
+
+                    System.out.println("Asientos ocupados: " + ocupados + " | Asientos disponibles: " + disponibles); // Esto se imprime por consola
+                });
+
                 Thread.sleep(3000); // 3 Segundos de espera // 3000 milisegundos -> 3 segundos
                 algoritmo(); // Vuelve a llamar al algoritmo
             } catch (InterruptedException e) {
@@ -218,21 +232,20 @@ public class simulacionController {
     }
 
     // IMPORTANTE: Hay que prevenir la generacion de hilos, para que el programa no colapse
-        private static long semilla = System.currentTimeMillis() % 1000;
+    private static long semilla = System.currentTimeMillis() % 1000;
 
-        public static int generarNumero() {
-            // Parámetros para el generador congruencial
-            long a = 1664525;
-            long c = 1013904223;
-            long m = (long) Math.pow(2, 32);
+    public static int generarNumero() {
+        // Parámetros para el generador congruencial
+        long a = 1664525;
+        long c = 1013904223;
+        long m = (long) Math.pow(2, 32);
 
-            // Fórmula: Xn+1 = (a * Xn + c) % m
-            semilla = (a * semilla + c) % m;
+        // Fórmula: Xn+1 = (a * Xn + c) % m
+        semilla = (a * semilla + c) % m;
 
-            // Escalar el número al rango deseado (1 a 40)
-            int numeroAleatorio = (int) (semilla % 40) + 1;
-            System.out.println(numeroAleatorio);
-            return numeroAleatorio;
-        }
+        // Escalar el número al rango deseado (1 a 40)
+        int numeroAleatorio = (int) (semilla % 40) + 1;
+        return numeroAleatorio;
+    }
 
 }
