@@ -11,20 +11,24 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/javafx"
-      fx:controller="com.example.fis_practica_1.simulacionController" style="-fx-background-color: rgba(101,53,154,0.53)">
+      fx:controller="com.example.fis_practica_1.simulacionController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
 
     <!-- Contenedor para los círculos, aqui se tienen cada uno de los circulos que se crean en el controller -->
     <StackPane fx:id="panePrincipal" prefWidth="800" prefHeight="400"
-               style="-fx-border-color: rgba(46,6,87,0.53); -fx-border-width: 2px;"/>
+               style="-fx-border-color: black; -fx-border-width: 2px;"/>
 
-    <VBox alignment="TOP_LEFT" spacing="20">
+    <!-- Boton simple para inicializar el algoritmo -->
+    <VBox alignment="CENTER" spacing="20">
+        <HBox alignment="CENTER" spacing="20">
+            <Button text="Iniciar simulacion" alignment="CENTER" fx:id="botonInicio" onAction="#btnEjecucionSimulacion"/>
+        </HBox>
+
         <!-- Panel de información de asientos con estilo mejorado -->
-        <HBox alignment="CENTER_LEFT" spacing="20">
-        <Pane style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 8; -fx-max-width: 220; -fx-border-color: rgba(46,6,87,0.53); -fx-border-width: 3px;">
-            <GridPane hgap="8" vgap="4" alignment="TOP_LEFT">
+        <Pane style="-fx-background-color: #f0f0f0; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-background-radius: 5; -fx-padding: 10;">
+            <GridPane hgap="10" vgap="5" alignment="CENTER">
                 <columnConstraints>
                     <ColumnConstraints hgrow="NEVER"/>
                     <ColumnConstraints hgrow="NEVER"/>
@@ -37,10 +41,6 @@
                 <Label fx:id="asientosDisponibles" text="40" style="-fx-font-weight: bold; -fx-text-fill: #2e7d32;" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
             </GridPane>
         </Pane>
-
-            <Button text="INICIAR SIMULACIÓN" style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-font-family: 'Arial'; -fx-background-color: #6a1b9a; -fx-text-fill: white; -fx-padding: 10 25; -fx-background-radius: 5;"
-                    minHeight="60" alignment="CENTER" fx:id="botonInicio" onAction="#btnEjecucionSimulacion"/>
-        </HBox>
 
         <!-- Posible muestreo de tiempo, todavia en pruebas -->
         <!--<HBox alignment="CENTER" spacing="10">
