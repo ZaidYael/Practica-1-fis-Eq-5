@@ -255,7 +255,9 @@ public class simulacionController {
     private void btnEjecucionSimulacion() {
         if (algoritmoEnEjecucion){
             System.out.println("Simulacion en prueba, por favor espere.");
+            return;
         }
+        algoritmoEnEjecucion = true;
         algoritmoInicio(); // Ahora llama al algoritmo de inicio primero
     }
 
