@@ -235,8 +235,8 @@ public class simulacionController {
 
                 // Aquí se actualiza la interfaz con el número de asientos ocupados
                 javafx.application.Platform.runLater(() -> {
-                    asientosOcupados.setText(String.valueOf(ocupados));
-                    asientosDisponibles.setText(String.valueOf(disponibles));
+                    asientosOcupados.setText(String.valueOf(ocupados+"/40"));
+                    //asientosDisponibles.setText(String.valueOf(disponibles));
 
                     System.out.println("Asientos ocupados: " + ocupados + " | Asientos disponibles: " + disponibles); // Esto se imprime por consola
                 });
