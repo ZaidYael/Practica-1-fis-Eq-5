@@ -53,20 +53,30 @@ public class simulacionController {
         panePrincipal.setBackground(new Background(backgroundImage));
 
         // Crear estaciones
-        Circle estacion1 = estacionCreada(-350, -100, Color.GREEN, 1);
-        Circle estacion2 = estacionCreada(-150, -50, Color.GREEN, 2);
-        Circle estacion3 = estacionCreada(0, -50, Color.GREEN, 3);
-        Circle estacion4 = estacionCreada(150, 50, Color.GREEN, 4);
-        Circle estacion5 = estacionCreada(350, 100, Color.GREEN, 5);
+        Circle estacion1 = estacionCreada(-350, 100, Color.GREEN, 1);  // Estación inicial (izquierda)
+        Circle estacion2 = estacionCreada(-250, 50, Color.GREEN, 2);
+        Circle estacion3 = estacionCreada(-150, 0, Color.GREEN, 3);
+        Circle estacion4 = estacionCreada(-75, -50, Color.GREEN, 4);
+        Circle estacion5 = estacionCreada(15, 0, Color.GREEN, 5);
+        Circle estacion6 = estacionCreada(50, 100, Color.GREEN, 6);
+        Circle estacion7 = estacionCreada(115, 0, Color.GREEN, 7);
+        Circle estacion8 = estacionCreada(175, -50, Color.GREEN, 8);
+        Circle estacion9 = estacionCreada(250, -30, Color.GREEN, 9);
+        Circle estacion10 = estacionCreada(350, 0, Color.GREEN, 10);
 
         // Crear rutas
-        Line ruta1 = ruta1Creada(-250, -75, 1);
-        Line ruta2 = ruta2Creada(-75, -50, 2);
-        Line ruta3 = ruta3Creada(75, 0, 3);
-        Line ruta4 = ruta4Creada(250, 75, 4);
+        Line ruta1 = ruta1Creada(-300, 75, 1);
+        Line ruta2 = ruta2Creada(-210, 30, 2);
+        Line ruta3 = ruta3Creada(-115, -25, 3);
+        Line ruta4 = ruta4Creada(-30, -25, 4);
+        Line ruta5 = ruta5Creada(30, 50, 5);
+        Line ruta6 = ruta6Creada(85, 50, 6);
+        Line ruta7 = ruta7Creada(145, -30, 7);
+        Line ruta8 = ruta8Creada(210, -45, 8);
+        Line ruta9 = ruta9Creada(300, -15, 9);
 
         // PRIMERO las rutas
-        panePrincipal.getChildren().addAll(ruta1, ruta2, ruta3, ruta4);
+        panePrincipal.getChildren().addAll(ruta1, ruta2, ruta3, ruta4, ruta5, ruta6, ruta7, ruta8, ruta9);
 
         // Crear autobus
         autobus = new Circle(15, Color.ORANGE);
@@ -81,18 +91,28 @@ public class simulacionController {
         panePrincipal.getChildren().add(autobus);
 
         // Luego las estaciones encima del autobús
-        panePrincipal.getChildren().addAll(estacion1, estacion2, estacion3, estacion4, estacion5);
+        panePrincipal.getChildren().addAll(estacion1, estacion2, estacion3, estacion4, estacion5, estacion6, estacion7, estacion8, estacion9, estacion10);
 
         estaciones.add(estacion1);
         estaciones.add(estacion2);
         estaciones.add(estacion3);
         estaciones.add(estacion4);
         estaciones.add(estacion5);
+        estaciones.add(estacion6);
+        estaciones.add(estacion7);
+        estaciones.add(estacion8);
+        estaciones.add(estacion9);
+        estaciones.add(estacion10);
 
         rutas.add(ruta1);
         rutas.add(ruta2);
         rutas.add(ruta3);
         rutas.add(ruta4);
+        rutas.add(ruta5);
+        rutas.add(ruta6);
+        rutas.add(ruta7);
+        rutas.add(ruta8);
+        rutas.add(ruta9);
     }
 
 
@@ -110,7 +130,7 @@ public class simulacionController {
 
 
     public Line ruta1Creada(double x, double y, int noRuta) {
-        Line ruta = new Line(140.00, 140.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        Line ruta = new Line(75.00, 60.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
         ruta.setTranslateX(x);
         ruta.setTranslateY(y);
 
@@ -121,7 +141,7 @@ public class simulacionController {
     }
 
     public Line ruta2Creada(double x, double y, int noRuta) {
-        Line ruta = new Line(90.00, 1.00, 1.00, 1.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        Line ruta = new Line(65.00, 65.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
         ruta.setTranslateX(x);
         ruta.setTranslateY(y);
 
@@ -132,7 +152,7 @@ public class simulacionController {
     }
 
     public Line ruta3Creada(double x, double y, int noRuta) {
-        Line ruta = new Line(95.00, 175.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        Line ruta = new Line(30.00, 80.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
         ruta.setTranslateX(x);
         ruta.setTranslateY(y);
 
@@ -143,7 +163,7 @@ public class simulacionController {
     }
 
     public Line ruta4Creada(double x, double y, int noRuta) {
-        Line ruta = new Line(140.00, 140.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
+        Line ruta = new Line(40.00, 125.00, 1.00, 100.00);  //v: Longitud horizontal v1: Inclinacion derecha v2:No sé v3: Longitud vertical
         ruta.setTranslateX(x);
         ruta.setTranslateY(y);
 
@@ -153,16 +173,61 @@ public class simulacionController {
         return ruta;
     }
 
+    public Line ruta5Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(60.00, 240.00, 1.00, 100.00);
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+        return ruta;
+    }
+
+    public Line ruta6Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(60.00, 10.00, 1.00, 100.00);
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+        return ruta;
+    }
+
+    public Line ruta7Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(20.00, 80.00, 1.00, 100.00);
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+        return ruta;
+    }
+
+    public Line ruta8Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(40.00, 115.00, 1.00, 100.00);
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+        return ruta;
+    }
+
+    public Line ruta9Creada(double x, double y, int noRuta) {
+        Line ruta = new Line(60.00, 120.00, 1.00, 100.00);
+        ruta.setTranslateX(x);
+        ruta.setTranslateY(y);
+        ruta.setStroke(Color.GREEN);
+        ruta.setStrokeWidth(3);
+        return ruta;
+    }
+
     // Cambio de estacion color verde
     public void cambiarColorVerde(int noEstacion) {
-        if (noEstacion >= 1 && noEstacion <= 5) {
+        if (noEstacion >= 1 && noEstacion <= 10) {
             estaciones.get(noEstacion - 1).setFill(Color.GREEN);  // Cambiar el color a verde
         }
     }
 
     // Cambio de estacion color rojo
     public void cambiarColorRojo(int noEstacion) {
-        if (noEstacion >= 1 && noEstacion <= 5) {
+        if (noEstacion >= 1 && noEstacion <= 10) {
             estaciones.get(noEstacion - 1).setFill(Color.RED);  // Cambiar el color a rojo
         }
     }
@@ -179,7 +244,7 @@ public class simulacionController {
     // El algoritmo ahora no usa condiciones, si no bloques de Lambda.
     public void algoritmo() {
         ruta = 1;
-        totalEstaciones = 5;
+        totalEstaciones = 10;
         noEstacion = 1;
 
         botonInicio.setDisable(true);
